@@ -1,0 +1,19 @@
+<br>
+<div class="row">
+    <%= image_tag @user.profile.url(:thumb) %>
+  </div>
+  <div class="columns large-3">
+    <p><strong><%= @user.name %></strong><br>
+    <%= @user.name %></p>
+  </div>
+  <div class="columns large-3">
+
+  </div>
+</div>
+<hr>
+
+<% if user_signed_in? %>
+
+<%= link_to 'Edit', edit_user_path(@user) %>
+
+<%end%>

@@ -1,0 +1,98 @@
+<br>
+<br>
+<%if user_signed_in?%>
+<%= link_to t('New Task'), new_task_path,class:"button"  %>
+<%end%>
+<h2>Listing Tasks</h2>
+<br>
+<hr>
+<br>
+
+
+  <h4>Finished</h4>
+  <table >
+     <thead>
+       <tr>
+         <th><%= 'Title' %></th>
+         <th><%= 'Duration' %></th>
+         <th><%= 'Initial date' %></th>
+         <th><%= 'Enddate' %></th>
+         <th><%= 'Author' %></th>         
+         <th><%= 'Finished' %></th>
+         <th><%= 'Responsable' %></th>
+       </tr>
+       <tr>
+         
+       </tr>
+     </thead>
+     <tbody>
+      <% @tasks.each do |task| %>
+        <% if task.checkbox == true %>
+          <tr>
+           <td><%= task.title %></td>
+           <td><%= task.duration %></td>
+           <td><%= task.initialdate %></td>
+           <td><%= task.enddate %></td>
+           <td><%= task.author %></td>
+           <td><%= task.checkbox %></td>
+           <td><%= findresponsable(task.responsable) %></td>
+           
+           
+         </tr>
+         <tr>
+          <%if user_signed_in?%>
+           <td><%= link_to t('Show'), task %></td>
+           <td><%= link_to t('Edit'), edit_task_path(task) %></td>
+           <td><%= link_to t('Destroy'), task, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+           <%end%>
+         </tr>
+        <% end %>
+      <% end %>
+     </tbody>
+    </table>
+  </div>
+
+
+
+  <h4>In Progress</h4>
+  <table class="small">
+     <thead>
+       <tr>
+         <th><%= 'Title' %></th>
+         <th><%= 'Duration' %></th>
+         <th><%= 'Initial date' %></th>
+         <th><%= 'Enddate' %></th>
+         <th><%= 'Author' %></th>         
+         <th><%= 'Finished' %></th>
+         <th><%= 'Responsable' %></th>
+       </tr>
+       <tr>
+         
+       </tr>
+     </thead>
+     <tbody>
+      <% @tasks.each do |task| %>
+        <% if task.checkbox == false %>
+          <tr>
+           <td><%= task.title %></td>
+           <td><%= task.duration %></td>
+           <td><%= task.initialdate %></td>
+           <td><%= task.enddate %></td>
+           <td><%= task.author %></td>
+           <td><%= task.checkbox %></td>
+           <td><%= findresponsable(task.responsable) %></td>
+           
+           
+         </tr>
+         <tr>
+         <%if user_signed_in?%>
+           <td><%= link_to t('Show'), task %></td>
+           <td><%= link_to t('Edit'), edit_task_path(task) %></td>
+           <td><%= link_to t('Destroy'), task, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+           <%end%>
+         </tr>
+        <% end %>
+      <% end %>
+     </tbody>
+    </table>
+  </div>
